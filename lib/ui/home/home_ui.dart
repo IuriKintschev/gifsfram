@@ -51,6 +51,7 @@ class HomeUi extends StatelessWidget {
       ),
       backgroundColor: Colors.black45,
       body: StreamBuilder(
+        initialData: [],
         stream: BlocProvider.getBloc<GifsBloc>().outGifs,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -59,7 +60,7 @@ class HomeUi extends StatelessWidget {
               itemBuilder: (context, index) {
                 if (index < snapshot.data.length) {
                   return GifsTile(snapshot.data[index]);
-                } else {
+                } else if (index > 1) {
                   BlocProvider.getBloc<GifsBloc>().inSearch.add(null);
                   return Container(
                     height: 40,
@@ -69,6 +70,8 @@ class HomeUi extends StatelessWidget {
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                     ),
                   );
+                } else {
+                  return Container();
                 }
               },
             );

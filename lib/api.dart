@@ -5,14 +5,15 @@ import 'package:http/http.dart' as http;
 import 'data/gife_data.dart';
 
 class Api {
-  String initial =
-      "https://api.giphy.com/v1/gifs/trending?api_key=POZsuGiuZFAcYnHeHIq2TtwzKTzu1DPl&limit=10&rating=G";
+  // String initial =
+  //     "https://api.giphy.com/v1/gifs/trending?api_key=POZsuGiuZFAcYnHeHIq2TtwzKTzu1DPl&limit=10&rating=G";
 
-  initialSearch() async {
-    http.Response response = await http.get(initial);
+  // Future<List<Gifs>> initialSearch() async {
+  //   http.Response response = await http.get(
+  //       "https://api.giphy.com/v1/gifs/search?api_key=POZsuGiuZFAcYnHeHIq2TtwzKTzu1DPl&q=new&limit=10&offset=0&rating=G&lang=pt");
 
-    return decode(response);
-  }
+  //   return decode(response);
+  // }
 
   Future<List<Gifs>> searchGifs({String search, int offset = 0}) async {
     http.Response response = await http.get(

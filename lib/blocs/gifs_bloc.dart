@@ -30,6 +30,9 @@ class GifsBloc implements BlocBase {
   //! recupera search da api.dart e insere outGifs
   void _search(String search) async {
     if (search != null) {
+      _currentSearch = search;
+      _offset = 0;
+      _gifsController.sink.add([]);
       gifs = await api.searchGifs(search: search);
     } else {
       _offset += 10;
