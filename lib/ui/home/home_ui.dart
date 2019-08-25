@@ -1,6 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:gifsgram/blocs/gifs_bloc.dart';
+import 'package:gifsgram/ui/home/widgets/gif_tile.dart';
 import 'package:gifsgram/ui/home/widgets/search_home.dart';
 
 class HomeUi extends StatelessWidget {
@@ -57,8 +58,9 @@ class HomeUi extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return ListView.builder(
+                  itemCount: snapshot.data.length,
                   itemBuilder: (context, index) {
-                    return Container(); //! terminar ==============
+                    return GifsTile(snapshot.data[index]);
                   },
                 );
               } else {
