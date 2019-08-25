@@ -30,8 +30,8 @@ class HomeUi extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: () {
-                  showSearch(
+                onPressed: () async {
+                  String result = await showSearch(
                       context: context, delegate: DataSearch()); //*datasearch
                 },
                 icon: Icon(
