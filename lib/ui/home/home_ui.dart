@@ -52,20 +52,22 @@ class HomeUi extends StatelessWidget {
               child: Image.asset("assets/giphy.png"),
             ),
           ),
+          StreamBuilder(
+            stream: BlocProvider.getBloc<GifsBloc>().outGifs,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                    return Container(); //! terminar ==============
+                  },
+                );
+              } else {
+                return Container();
+              }
+            },
+          ),
         ],
       ),
     );
   }
 }
-
-//  GridView.builder(
-//       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//         crossAxisSpacing: 4,
-//         mainAxisSpacing: 4,
-//         crossAxisCount: 2,
-//       ),
-//       itemCount: 5,
-//       itemBuilder: (context, index) {
-//         return Card();
-//       },
-//     );
