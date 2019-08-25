@@ -10,6 +10,16 @@ class HomeUi extends StatelessWidget {
           SliverAppBar(
             floating: true,
             actions: <Widget>[
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  "0",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
               IconButton(
                 onPressed: () {},
                 icon: Icon(
