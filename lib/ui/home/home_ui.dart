@@ -55,9 +55,21 @@ class HomeUi extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
-              itemCount: snapshot.data.length,
+              itemCount: snapshot.data.length + 1,
               itemBuilder: (context, index) {
-                return GifsTile(snapshot.data[index]);
+                if (index < snapshot.data.length) {
+                  return GifsTile(snapshot.data[index]);
+                } else {
+                  BlocProvider.getBloc<GifsBloc>().inSearch.add(null);
+                  return Container(
+                    height: 40,
+                    width: 40,
+                    alignment: Alignment.bottomCenter,
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                  );
+                }
               },
             );
           } else {

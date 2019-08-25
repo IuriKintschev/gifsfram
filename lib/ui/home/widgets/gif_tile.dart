@@ -41,6 +41,14 @@ class GifsTile extends StatelessWidget {
                     ],
                   ),
                 ),
+                IconButton(
+                  icon: Icon(
+                    Icons.star_border,
+                    color: Colors.yellow,
+                    size: 30,
+                  ),
+                  onPressed: () {},
+                ),
               ],
             ),
           ],

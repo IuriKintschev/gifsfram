@@ -14,6 +14,7 @@ class GifsBloc implements BlocBase {
     _searchController.stream.listen(_search); //! cahamando search api.dart
   }
 
+  int count = 0; //! contador offset
   List<Gifs> gifs; //! gifs
 
   final StreamController<List<Gifs>> _gifsController =
@@ -26,7 +27,13 @@ class GifsBloc implements BlocBase {
 
   //! recupera search da api.dart e insere outGifs
   void _search(String search) async {
-    gifs = await api.searchGifs(search);
+    if (search != null) {
+      gifs = await api.searchGifs(search);
+    } else {
+      count += 10;
+
+      gifs += await api.nextPage(count);
+    }
 
     _gifsController.sink.add(gifs);
   }
