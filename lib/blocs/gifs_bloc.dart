@@ -48,6 +48,8 @@ class GifsBloc implements BlocBase {
     _searchController.close();
   }
 
+//==============================================
+// todo: metodos obrigatorios nao implementados
   @override
   void addListener(listener) {
     //addListener
@@ -66,4 +68,5 @@ class GifsBloc implements BlocBase {
   void removeListener(listener) {
     //removeListener
   }
+  //==============================================
 }

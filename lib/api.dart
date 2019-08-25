@@ -5,8 +5,6 @@ import 'package:http/http.dart' as http;
 import 'data/gife_data.dart';
 
 class Api {
-  String _currentSearch;
-
   String initial =
       "https://api.giphy.com/v1/gifs/trending?api_key=POZsuGiuZFAcYnHeHIq2TtwzKTzu1DPl&limit=10&rating=G";
 
@@ -22,13 +20,6 @@ class Api {
 
     return decode(response);
   }
-
-  // Future<List<Gifs>> nextPage(int offset) async {
-  //   http.Response response = await http.get(
-  //       "https://api.giphy.com/v1/gifs/search?api_key=POZsuGiuZFAcYnHeHIq2TtwzKTzu1DPl&q=$_currentSearch&limit=10&offset=$offset&rating=G&lang=pt");
-
-  //   return decode(response);
-  // }
 
   List<Gifs> decode(http.Response response) {
     if (response.statusCode == 200) {
