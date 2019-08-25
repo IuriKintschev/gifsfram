@@ -1,4 +1,6 @@
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:gifsgram/blocs/favorite_bloc.dart';
 import 'package:gifsgram/data/gife_data.dart';
 
 class GifsTile extends StatelessWidget {
@@ -41,13 +43,27 @@ class GifsTile extends StatelessWidget {
                     ],
                   ),
                 ),
-                IconButton(
-                  icon: Icon(
-                    Icons.star_border,
-                    color: Colors.yellow,
-                    size: 30,
-                  ),
-                  onPressed: () {},
+                StreamBuilder<Map<String, Gifs>>(
+                  stream: BlocProvider.getBloc<FavoriteBloc>().outFav,
+                  initialData: {},
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return IconButton(
+                        icon: Icon(
+                          snapshot.data.containsKey(gif.id)
+                              ? Icons.star
+                              : Icons.star_border,
+                          color: Colors.yellow,
+                          size: 30,
+                        ),
+                        onPressed: () {
+                          BlocProvider.getBloc<FavoriteBloc>().toogleFav(gif);
+                        },
+                      );
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  },
                 ),
               ],
             ),

@@ -1,5 +1,6 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:gifsgram/blocs/favorite_bloc.dart';
 import 'package:gifsgram/blocs/gifs_bloc.dart';
 import 'package:gifsgram/ui/home/home_ui.dart';
 
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       blocs: [
         Bloc((_) => GifsBloc()),
+        Bloc((_) => FavoriteBloc()),
       ],
       child: MaterialApp(
         title: "Gifsgram",

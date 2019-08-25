@@ -7,7 +7,8 @@ class FavoriteBloc implements BlocBase {
   Map<String, Gifs> _favorites = {};
 
   final StreamController<Map<String, Gifs>> _favController =
-      new StreamController<Map<String, Gifs>>(); // saida dos favoritos
+      new StreamController<
+          Map<String, Gifs>>.broadcast(); // saida dos favoritos
   Stream<Map<String, Gifs>> get outFav => _favController.stream;
 
   void toogleFav(Gifs gif) {
