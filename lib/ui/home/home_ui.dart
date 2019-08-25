@@ -1,4 +1,6 @@
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:gifsgram/blocs/gifs_bloc.dart';
 import 'package:gifsgram/ui/home/widgets/search_home.dart';
 
 class HomeUi extends StatelessWidget {
@@ -33,6 +35,9 @@ class HomeUi extends StatelessWidget {
                 onPressed: () async {
                   String result = await showSearch(
                       context: context, delegate: DataSearch()); //*datasearch
+                  if (result != null) {
+                    BlocProvider.getBloc<GifsBloc>().inSearch.add(result);
+                  }
                 },
                 icon: Icon(
                   Icons.search,

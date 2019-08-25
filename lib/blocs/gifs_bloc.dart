@@ -16,17 +16,19 @@ class GifsBloc implements BlocBase {
 
   List<Gifs> gifs; //! gifs
 
-  final StreamController _gifsController = new StreamController();
+  final StreamController<List<Gifs>> _gifsController =
+      new StreamController<List<Gifs>>();
   Stream get outGifs => _gifsController.stream; //! saida  de gifs
 
-  final _searchController = new StreamController();
+  final StreamController<String> _searchController =
+      new StreamController<String>();
   Sink get inSearch => _searchController.sink; //! entrada de gifs
 
   //! recupera search da api.dart e insere outGifs
   void _search(String search) async {
     gifs = await api.searchGifs(search);
 
-    print(gifs);
+    _gifsController.sink.add(gifs);
   }
 
   //! finalisando streams
