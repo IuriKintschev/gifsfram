@@ -10,21 +10,34 @@ class GifsBloc implements BlocBase {
 
   GifsBloc() {
     api = new Api();
+
+    _searchController.stream.listen(_search);
   }
 
   List<Gifs> gifs;
 
   final StreamController _gifsController = new StreamController();
+  Stream get outGifs => _gifsController.stream;
 
-  @override
-  void addListener(listener) {
-    //addListener
+  final _searchController = new StreamController();
+  Sink get inSearch => _searchController.sink;
+
+  void _search(String search) async {
+    gifs = await api.searchGifs(search);
+
+    print(gifs);
   }
 
   @override
   void dispose() {
     //dispose
     _gifsController.close();
+    _searchController.close();
+  }
+
+  @override
+  void addListener(listener) {
+    //addListener
   }
 
   @override
