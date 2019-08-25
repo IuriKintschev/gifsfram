@@ -31,7 +31,8 @@ class HomeUi extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  showSearch(context: context, delegate: DataSearch());
+                  showSearch(
+                      context: context, delegate: DataSearch()); //*datasearch
                 },
                 icon: Icon(
                   Icons.search,
