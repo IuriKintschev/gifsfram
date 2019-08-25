@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gifsgram/ui/home/widgets/search_home.dart';
 
 class HomeUi extends StatelessWidget {
   @override
@@ -29,7 +30,9 @@ class HomeUi extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  showSearch(context: context, delegate: DataSearch());
+                },
                 icon: Icon(
                   Icons.search,
                   size: 30,
