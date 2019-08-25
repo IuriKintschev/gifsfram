@@ -16,19 +16,19 @@ class Api {
     return decode(response);
   }
 
-  Future<List<Gifs>> searchGifs(String search) async {
+  Future<List<Gifs>> searchGifs({String search, int offset = 0}) async {
     http.Response response = await http.get(
-        "https://api.giphy.com/v1/gifs/search?api_key=POZsuGiuZFAcYnHeHIq2TtwzKTzu1DPl&q=$search&limit=10&offset=0&rating=G&lang=pt");
+        "https://api.giphy.com/v1/gifs/search?api_key=POZsuGiuZFAcYnHeHIq2TtwzKTzu1DPl&q=$search&limit=10&offset=$offset&rating=G&lang=pt");
 
     return decode(response);
   }
 
-  Future<List<Gifs>> nextPage(int offset) async {
-    http.Response response = await http.get(
-        "https://api.giphy.com/v1/gifs/search?api_key=POZsuGiuZFAcYnHeHIq2TtwzKTzu1DPl&q=$_currentSearch&limit=10&offset=$offset&rating=G&lang=pt");
+  // Future<List<Gifs>> nextPage(int offset) async {
+  //   http.Response response = await http.get(
+  //       "https://api.giphy.com/v1/gifs/search?api_key=POZsuGiuZFAcYnHeHIq2TtwzKTzu1DPl&q=$_currentSearch&limit=10&offset=$offset&rating=G&lang=pt");
 
-    return decode(response);
-  }
+  //   return decode(response);
+  // }
 
   List<Gifs> decode(http.Response response) {
     if (response.statusCode == 200) {
