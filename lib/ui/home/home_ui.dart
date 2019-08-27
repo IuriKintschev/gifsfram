@@ -1,6 +1,9 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gifsgram/blocs/favorite_bloc.dart';
 import 'package:gifsgram/blocs/gifs_bloc.dart';
+import 'package:gifsgram/ui/favorites/favorites_ui.dart';
 import 'package:gifsgram/ui/home/widgets/gif_tile.dart';
 import 'package:gifsgram/ui/home/widgets/search_home.dart';
 
@@ -17,16 +20,32 @@ class HomeUi extends StatelessWidget {
         actions: <Widget>[
           Align(
             alignment: Alignment.center,
-            child: Text(
-              "0",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-              ),
+            child: StreamBuilder(
+              initialData: {},
+              stream: BlocProvider.getBloc<FavoriteBloc>().outFav,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Text(
+                    "${snapshot.data.length}",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  );
+                } else {
+                  return Container();
+                }
+              },
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) => FavoritesUi(),
+                ),
+              );
+            },
             icon: Icon(
               Icons.star_half,
               size: 30,
