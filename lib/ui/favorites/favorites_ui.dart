@@ -18,6 +18,7 @@ class FavoritesUi extends StatelessWidget {
       ),
       backgroundColor: Colors.black45,
       body: StreamBuilder<Map<String, Gifs>>(
+        initialData: {},
         stream: bloc.outFav,
         builder: (context, snapshot) {
           return ListView(
